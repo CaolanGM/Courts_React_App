@@ -1,0 +1,39 @@
+.casesHeaders{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+
+.viewCaseTile{
+    
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+
+.headerName{
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.caseName {
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.caseName.Complete{
+    color: grey;
+    text-decoration: line-through;
+}
+
+.caseName.Live{
+    color: green;
+    text-decoration: underline;
+}
+
+.caseName.SecondCall{
+    color: blue;
+}
