@@ -1,0 +1,23 @@
+.viewCourts{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.viewCourtsColumn{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.courtTile{
+    color: white;
+    background-color: navy;
+    border-radius: 25px;
+    padding: 20px;
+    font-weight: bold;
+}

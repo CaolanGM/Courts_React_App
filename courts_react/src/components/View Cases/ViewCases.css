@@ -2,24 +2,56 @@
     font-weight: bold;
     display: flex;
     flex-direction: row;
-    width: 400px;
+    /* width: 400px; */
 }
 
-.viewCaseTile{
+.caseTile{
     
     display: flex;
     flex-direction: row;
-    width: 400px;
+    /* width: 400px; */
+}
+
+
+.caseTile.selected{
+    background-color: lightgray;
 }
 
 .headerName{
-    width: 300px;
+    width: 500px;
+    display: flex;
+    align-items: flex-start;
+}
+.headerStatus{
     display: flex;
     align-items: flex-start;
 }
 
-.caseName {
+.headerEdit{
     width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* background-color: pink; */
+}
+
+.caseRadios{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+
+
+.caseName {
+    width: 500px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.caseStatus {
     display: flex;
     align-items: flex-start;
 }

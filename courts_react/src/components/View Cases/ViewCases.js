@@ -5,28 +5,84 @@ import './ViewCases.css'
 import { Oval } from  'react-loader-spinner'
 import CaseTile from './ViewCaseTile';
 
-function ViewCasesScreen({editMode}) {
+function ViewCasesScreen({editMode,court,listType,listName,backClicked}) {
 
 
     const [cases, setCases] = useState([])
+    const [selectedIndex, setSelectedIndex] = useState(0)
+
     const [loading, setLoading] = useState(false)
 
 
     const baseURL = "http://localhost:1337/";
 
+    var caseArr = []
+    var currentIndex  = 0
+
+
+    const findNextIndex = () =>
+    {
+        var foundNext = false
+        var index  =  0
+
+        caseArr[currentIndex].selected = false
+        caseArr.forEach(caseVar => {
+            if(index>currentIndex)
+            {
+                if(caseVar.status === "None" && !foundNext){
+                    caseVar.selected = true
+                    foundNext = true
+                    console.log("Found")
+                    setSelectedIndex(index)
+                    currentIndex = index
+                }
+            }
+            index++
+        });
+
+        setCases(caseArr)
+    }
+
+    const getStatusFromKeyCode  = (keyCode) => {
+
+        switch(keyCode)
+        {
+            case 49: return "Live"
+            case 50: return "Complete"
+            case 51: return "SecondCall"
+        }
+
+    }
 
     const keyPressed = (event) => {
 
         console.log("Key Pressed", event.keyCode)
 
+        if(event.keyCode ===  49 || event.keyCode ===  50 ||  event.keyCode ===  51)
+        {
+            let status  = getStatusFromKeyCode(event.keyCode)
+
+            console.log("Case",currentIndex, caseArr[currentIndex] )
+            caseArr[currentIndex].status = status
+            setCases(caseArr)
+            
+            findNextIndex()
+        }
+
+        
+
     }
 
     useEffect(async () => {
 
-        var caseArr = []
-        caseArr.push({id:1, name:"Melvin v Melvin", status:"Complete"})
-        caseArr.push({id:2,name:"Melvin v Jackson", status:"Live"})
-        caseArr.push({id:3,name:"Murphy v Melvin", status:"SecondCall"})
+        caseArr.push({id:1, name:"Melvin v Melvin", status:"None", selected:true})
+        caseArr.push({id:2,name:"Melvin v Jackson", status:"None", selected:false})
+        caseArr.push({id:3,name:"Murphy v Melvin", status:"None", selected:false})
+        caseArr.push({id:4,name:"Murphy v Murphy", status:"None", selected:false})
+
+        caseArr.push({name: "Filler Text"})
+        caseArr.push({id:5,name:"Murphy v Murphy", status:"None", selected:false})
+        caseArr.push({id:6,name:"Murphy v Murphy", status:"None", selected:false})
 
         setCases(caseArr)
         setLoading(false)
@@ -42,7 +98,11 @@ function ViewCasesScreen({editMode}) {
     return(
         <div className="container">
 
-            <h3>Cases Screen</h3>
+        <button onClick={backClicked}>Back to Lists</button>
+
+
+
+            <h2>{court} - {listType}: {listName}</h2>
             
            
             {(!loading) && <div>
@@ -63,9 +123,11 @@ function ViewCasesScreen({editMode}) {
 
             {cases.map((caseVar) => (
             // <div onClick={() => eventTileClicked(eventIns)}>
-            <CaseTile caseVar={caseVar} editMode={false} />
+            <CaseTile caseVar={caseVar} editMode={editMode} />
             // </div>
             ))}
+
+
             </div>}
 
 
