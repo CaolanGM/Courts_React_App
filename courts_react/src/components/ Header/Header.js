@@ -1,30 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import  './Header.css'
+import firebase from '../../firebase'
+import { useNavigate } from "react-router-dom";
 
-export default function Header(setAuth) {
+
+export default function Header() {
 
 
-    const [loggedIn, setLoggedIn] = useState(false)
+
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem("authID") !== null)
     const [user, setUser] = useState("Caolan")
+    const navigate = useNavigate();
+
+    const auth = firebase.auth()
 
 
     const login = () =>  {
-        setLoggedIn(true)
-        setAuth(true)
+        
+        navigate("../login", { replace: true });
     }
 
     const logout = () =>  {
-        setLoggedIn(false)
-        setAuth(false)
 
+        auth.signOut()
+        setLoggedIn(false)
+        localStorage.removeItem("authID");
+        navigate("../browse", { replace: true });
     }
 
+
+    const storageListener = (e) =>
+    {
+        console.log("Storage Changed",e)
+    }
+
+    const onAuthStateChanged = (user) => {
+        console.log("User",user)
+        setLoggedIn(user !== null)
+      }
+
+    const goHome = () =>{
+        navigate("../", { replace: true });
+    }
+
+    useEffect(async () => {
+
+        auth.onAuthStateChanged(onAuthStateChanged)
+        window.addEventListener('storage', storageListener);
+ 
+    }, []);
 
 
     return (
         <div className="header">
 
-            <div className="logoSection">
+            <div className="logoSection" onClick={goHome}>
                 <img className="logoIV" src="assets/logo.png" />
                 <span>Court Project</span>
             </div>

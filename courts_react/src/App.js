@@ -4,54 +4,61 @@ import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
 import Login from './components/Login/Login'
 import ViewCasesScreen from './components/View Cases/ViewCases'
 import ViewCourts from './components/Browse/ViewCourts';
+import ViewLists from './components/View Lists/ViewLists';
 import Browse from './components/Browse/Browse';
 import Header from './components/ Header/Header';
+import HomeScreen from './components/Home/Home';
+import UploadCases from './components/Admin/uploadEditCase';
+import Test from './components/Test/test';
+import CreateList from './components/Admin/createList';
+import EditCasesScreen from './components/Admin/EditCases';
+
+import firebase from './firebase'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+
 import React, { useEffect, useState } from 'react';
 
 
 function App() {
 
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  // const [loggedIn, setLoggedIn] = useState(loggedIn)
 
-
-  const setAuth = (authenticated) => {
-
-    console.log("Auth",authenticated)
-    setLoggedIn(authenticated)
-
-  }
 
 
   return (
     <div className="App">
 
-      <Header setAuth={setAuth}/>
+      
 
-      <div className="container">
+      
       <Router>
+
+            <Header/>
      
+            <div className="container">
+
             <Routes>
-              <Route path='/' exact element={
-                <>
-                  <h1>Home</h1>
-                </>
-              } />
+              <Route path='/'  element={<HomeScreen />} />
               <Route path='/login' element={<Login/>}/>
-              <Route path='/viewCases' element={<ViewCasesScreen editMode={true}/>}/>
+              <Route path='/editCases' element={<EditCasesScreen listID={"1646611200000 Supreme Court Supreme Court"}/>}/>
               <Route path='/viewCourts' element={<ViewCourts/>}/>
-              <Route path='/browse' element={<Browse authenticated={loggedIn}/>}/>
+              <Route path='/browse' element={<Browse/>}/>
 
               {/* <Route path='/booking/:id' element={<BookingScreen/>}/> */}
-
+              <Route path='/test' element={<Test/>}/>
+              <Route path='/upload' element={<UploadCases/>}/>
+              <Route path='/addList' element={<CreateList/>}/>
+              <Route path='/viewLists/:court' element={<ViewLists/>}/>
     
             </Routes>
             
-    
+            </div>
             
         </Router>
 
-        </div>
+        
     </div>
   );
 }

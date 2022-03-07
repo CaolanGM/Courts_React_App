@@ -4,20 +4,24 @@ import axios from "axios";
 import './ViewCases.css'
 import { Oval } from  'react-loader-spinner'
 import CaseTile from './ViewCaseTile';
+import AdminToolbar from '../Admin/editCasesToolbar';
+import { useNavigate } from "react-router-dom";
 
-function ViewCasesScreen({editMode,court,listType,listName,backClicked}) {
+function ViewCasesScreen({editMode,court,listType,listName,backClicked,listID}) {
 
 
     const [cases, setCases] = useState([])
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     const [loading, setLoading] = useState(false)
+    const [addingCase, setAddingCase] = useState(true)
 
 
-    const baseURL = "http://localhost:1337/";
+    const baseURL = "https://us-central1-courts-webapp.cloudfunctions.net/";
 
     var caseArr = []
     var currentIndex  = 0
+    const navigate = useNavigate();
 
 
     const findNextIndex = () =>
@@ -73,23 +77,49 @@ function ViewCasesScreen({editMode,court,listType,listName,backClicked}) {
 
     }
 
+
+    const loadCases = async() => {
+
+        
+
+        axios.get(baseURL+'getListByID',{
+            
+            params:{
+                id: listID
+            }
+
+        
+        }).then( (response) => {
+        
+            const data = response.data;
+            
+            data.cases.forEach(caseVar => {
+                caseArr.push(caseVar)
+            });
+
+            console.log(data)
+
+            setCases(caseArr)
+            setLoading(false)
+        });
+    
+        
+    }
+
+    const clicked = (button) => {
+        console.log("BTN", button)
+
+        if(button === "Home"){navigate("../", { replace: true });}
+    }
+
+
     useEffect(async () => {
-
-        caseArr.push({id:1, name:"Melvin v Melvin", status:"None", selected:true})
-        caseArr.push({id:2,name:"Melvin v Jackson", status:"None", selected:false})
-        caseArr.push({id:3,name:"Murphy v Melvin", status:"None", selected:false})
-        caseArr.push({id:4,name:"Murphy v Murphy", status:"None", selected:false})
-
-        caseArr.push({name: "Filler Text"})
-        caseArr.push({id:5,name:"Murphy v Murphy", status:"None", selected:false})
-        caseArr.push({id:6,name:"Murphy v Murphy", status:"None", selected:false})
-
-        setCases(caseArr)
-        setLoading(false)
 
 
         window.addEventListener('keydown', keyPressed);
 
+        setLoading(true)
+        loadCases()
  
     }, []);
 
@@ -98,6 +128,7 @@ function ViewCasesScreen({editMode,court,listType,listName,backClicked}) {
     return(
         <div className="container">
 
+        <AdminToolbar buttonClicked={clicked}/>
         <button onClick={backClicked}>Back to Lists</button>
 
 
@@ -126,6 +157,9 @@ function ViewCasesScreen({editMode,court,listType,listName,backClicked}) {
             <CaseTile caseVar={caseVar} editMode={editMode} />
             // </div>
             ))}
+
+
+          
 
 
             </div>}

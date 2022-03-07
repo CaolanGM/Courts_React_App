@@ -20,9 +20,9 @@ export default function ViewListLists({clicked, listType, backClicked}) {
 
 
             <div className="viewCourtsColumn">
-                <button className="courtTile" onClick={()=>listListClicked("01/03/2020")}>01/03/2020</button>
-                <button className="courtTile" onClick={()=>listListClicked("04/03/2020")}>04/03/2020</button>
-                <button className="courtTile" onClick={()=>listListClicked("07/03/2020")}>07/03/2020</button>
+                <button className="courtTile" onClick={()=>listListClicked("01/03/2022")}>01/03/2020</button>
+                <button className="courtTile" onClick={()=>listListClicked("04/03/2022")}>04/03/2020</button>
+                <button className="courtTile" onClick={()=>listListClicked("07/03/2022")}>07/03/2020</button>
             </div>
             
             

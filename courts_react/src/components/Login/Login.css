@@ -1,0 +1,60 @@
+
+
+h4 {
+    color: rgba(0, 255, 170, 0.68);
+}
+
+.loginContainer {
+    overflow: auto;
+    /* flex: 50%; */
+    margin: 10%;
+}
+
+
+.registerContainer {
+    overflow: auto;
+    /* flex: 50%; */
+    margin: 10%;
+}
+
+form{
+    
+    flex-direction: column;
+}
+
+input{
+    display: block;
+}
+
+
+.loginScreen{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.submitButton
+{
+        width: 117px;
+        height: 48px;
+        margin-top: 10px;
+        padding: 10px 24px;
+        border-radius: 24px;
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        box-shadow: 8px 8px 24px 0 var(--almost-black-40), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 var(--almost-black-40);
+        border: solid 1px rgba(245, 247, 250, 0.06);
+        background-image: linear-gradient(112deg, rgba(245, 247, 250, 0.12), rgba(245, 247, 250, 0.06) 52%, rgba(245, 247, 250, 0) 100%);
+        float: left;
+    
+}
+
+.submitButton:hover
+{
+    background-color: rgba(0, 255, 170, 0.68);
+    color: white;
+    transition: 0.3s;
+}

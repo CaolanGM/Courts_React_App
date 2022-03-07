@@ -9,16 +9,29 @@
     
     display: flex;
     flex-direction: row;
+    padding: 5px;
     /* width: 400px; */
 }
 
 
 .caseTile.selected{
-    background-color: lightgray;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: black;
+}
+
+
+
+.caseTile.even{
+    background-color: #F4F4F4;
+}
+
+.caseTile.odd{
+    background-color: white;
 }
 
 .headerName{
-    width: 500px;
+    width: 750px;
     display: flex;
     align-items: flex-start;
 }
@@ -46,7 +59,7 @@
 
 
 .caseName {
-    width: 500px;
+    width: 750px;
     display: flex;
     align-items: flex-start;
 }
