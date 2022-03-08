@@ -3,7 +3,7 @@ import  './viewLists.css'
 import  {useParams} from 'react-router-dom'
 import Dropdown from '../Admin/Dropdown';
 
-export default function ListFilters({courtParam}) {
+export default function ListFilters({courtParam, onChange}) {
     
     const courts = [
         {id: 0, name:"High Court", value:[
@@ -17,9 +17,9 @@ export default function ListFilters({courtParam}) {
     ]
 
    
-    const [court, setCourt] = useState("")
-    const [listType, setListType] = useState("")
-    const [dateStr, setDateStr] = useState("")
+    const [court, setCourt] = useState(null)
+    const [listType, setListType] = useState(null)
+    const [dateStr, setDateStr] = useState(null)
     const [courtOptions, setCourtOptions] = useState(courts)
     const [listTypeOptions, setListTypeOptions] = useState([])
     const [courtSelected,setCourtSelected] = useState(false)
@@ -36,6 +36,7 @@ export default function ListFilters({courtParam}) {
 
         setCourtSelected(true)
         setListSelected(false)
+        setListType(null)
         setListTypeOptions(listOptions)
 
         console.log("list options length",listOptions.length)
@@ -44,6 +45,8 @@ export default function ListFilters({courtParam}) {
             setListSelected(true)
             setListType(listOptions[0].id)
         }
+
+        
     }
 
     
@@ -71,7 +74,17 @@ export default function ListFilters({courtParam}) {
             {
                 console.log("Court Param found",courtVar.id)
                 setInitialCourt(courtVar.id)
+                setCourt(courtVar.name)
+                setCourtSelected(true)
                 setListTypeOptions(courtVar.value)
+
+                if(courtVar.value.length === 1){
+            
+                    setListSelected(true)
+                    setListType(courtVar.value[0].id)
+                }
+
+
                 return(courtVar.id)
             }
         });
@@ -83,7 +96,13 @@ export default function ListFilters({courtParam}) {
 
        setInitialCourtFunc()
  
-    }, []);
+    }, [courtParam]);
+
+    useEffect(async () => {
+
+        onChange(court,listType,dateStr)
+  
+     }, [court,listType,dateStr]);
 
     return (
         <div className="listFilters">

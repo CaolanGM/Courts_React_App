@@ -50,7 +50,7 @@ function App() {
               <Route path='/test' element={<Test/>}/>
               <Route path='/upload' element={<UploadCases/>}/>
               <Route path='/addList' element={<CreateList/>}/>
-              <Route path='/viewLists/:court' element={<ViewLists/>}/>
+              <Route path='/viewLists/:courtName' element={<ViewLists/>}/>
     
             </Routes>
             
