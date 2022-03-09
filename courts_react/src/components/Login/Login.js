@@ -36,7 +36,7 @@ export default function Login() {
             console.log("AuthID",authID)
 
             localStorage.setItem("authID", authID);
-            navigate("../browse", { replace: true });
+            navigate("../", { replace: true });
         })
         .catch((err) => {
             console.log('Login',err)
@@ -46,6 +46,7 @@ export default function Login() {
       
 
     return (
+        <div className='container'>
         <div className="loginContainer">
 
             
@@ -59,6 +60,7 @@ export default function Login() {
             </form>
             
             
+        </div>
         </div>
     )
 }

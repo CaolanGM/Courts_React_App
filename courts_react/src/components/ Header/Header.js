@@ -25,7 +25,7 @@ export default function Header() {
         auth.signOut()
         setLoggedIn(false)
         localStorage.removeItem("authID");
-        navigate("../browse", { replace: true });
+        navigate("../", { replace: true });
     }
 
 

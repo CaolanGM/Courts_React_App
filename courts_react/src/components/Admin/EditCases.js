@@ -122,6 +122,8 @@ function EditCasesScreen({listID}) {
         {
             var caseArr = cases
             caseArr[selectedIndex].selected = true
+            caseArr[selectedIndex].status = "Live"
+            updateCaseDB(caseArr[selectedIndex])
             setCases(caseArr)
         }
     }
@@ -130,6 +132,8 @@ function EditCasesScreen({listID}) {
     {
         var caseArr = cases
         caseArr[selectedIndex].selected = false
+        caseArr[selectedIndex].status = "None"
+        updateCaseDB(caseArr[selectedIndex])
         setCases(caseArr)
     }
 
@@ -161,6 +165,7 @@ function EditCasesScreen({listID}) {
                     found = true
                     caseVar.selected = true
                     caseVar.status = "Live"
+                    updateCaseDB(caseVar)
                     setCases(caseArr)
                     setSelectedIndex(index)
                     

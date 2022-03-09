@@ -37,7 +37,7 @@ function App() {
 
             <Header/>
      
-            <div className="container">
+            {/* <div className="container"> */}
 
             <Routes>
               <Route path='/'  element={<HomeScreen />} />
@@ -54,7 +54,7 @@ function App() {
     
             </Routes>
             
-            </div>
+            {/* </div> */}
             
         </Router>
 

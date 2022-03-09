@@ -59,7 +59,7 @@ export default function CaseTile({caseVar,editMode,listID}) {
             
             {(editMode && checkFormat(caseVar.name)) && 
                 <div className='caseRadios' onChange={onChangeValue}>
-                    <input disabled='true' className='caseRadio' type="radio" value="Live" name={`status${caseVar.id}`} checked={caseVar.status==="Live"} /> 
+                    <input className='caseRadio' type="radio" value="Live" name={`status${caseVar.id}`} checked={caseVar.status==="Live"} /> 
                     <input className='caseRadio' type="radio" value="Complete" name={`status${caseVar.id}`} checked={caseVar.status==="Complete"} /> 
                     <input className='caseRadio' type="radio" value="SecondCall" name={`status${caseVar.id}`}  checked={caseVar.status==="SecondCall"}/> 
                 </div>

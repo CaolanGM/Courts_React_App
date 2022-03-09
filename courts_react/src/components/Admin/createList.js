@@ -4,7 +4,7 @@ import Dropdown from './Dropdown';
 import axios from 'axios';
 import ViewCasesScreen from '../View Cases/ViewCases';
 import { Oval } from  'react-loader-spinner'
-
+import { useNavigate } from "react-router-dom";
 
 export default function CreateList({param}) {
 
@@ -19,6 +19,7 @@ export default function CreateList({param}) {
     const [loading,setLoading] = useState(false)
 
     const baseURL = "https://us-central1-courts-webapp.cloudfunctions.net/";
+    const navigate = useNavigate();
 
     const courts = [
         {id: 0, name:"High Court", value:[
@@ -170,6 +171,10 @@ export default function CreateList({param}) {
         setDateStr(dateStrP)
     }
 
+    const goHome = () => {
+
+        navigate("../", { replace: true });
+    }
 
 
     return (
@@ -206,7 +211,7 @@ export default function CreateList({param}) {
                     </form>
 
                     <div className="addListFooter">
-                        <button className='footerButton'>Home</button>
+                        <button className='footerButton' onClick={goHome}>Home</button>
                         <button className='footerButton next'
                         disabled={!(courtSelected&&listTypeSelected&&dateSelected&&fileAdded)}
                         onClick={uploadList}>Next

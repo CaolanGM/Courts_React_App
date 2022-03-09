@@ -4,6 +4,7 @@ import  {useParams} from 'react-router-dom'
 import ListFilters from './ListFilters';
 import ListTable from './ListTable';
 import ViewCasesScreen from '../View Cases/ViewCases';
+import EditCasesScreen from '../Admin/EditCases';
 import axios from "axios";
 
 export default function ViewLists({clicked}) {
@@ -15,6 +16,7 @@ export default function ViewLists({clicked}) {
     const [court, setCourt] = useState(null)
     const [lists, setLists] = useState([])
 
+    const [signedIn,setSignedIn] = useState(localStorage.getItem("authID") !== null)
     
     
 
@@ -88,13 +90,20 @@ export default function ViewLists({clicked}) {
 
 
     return (
+        
         <div className="viewLists">
 
-            <ListFilters courtParam={court} onChange ={filtersChanged}/>
+            {!(showCases && signedIn ) &&<ListFilters courtParam={court} onChange ={filtersChanged}/>}
             {/* <h2>{court}</h2> */}
+            <div className='container'>
             {!showCases &&<ListTable listData={lists} onClick={tableRowClicked}/>}
-            {showCases && <ViewCasesScreen list={selectedList}/>}
 
+            </div>
+
+            {(showCases && !signedIn ) && <ViewCasesScreen list={selectedList}/>}
+            {(showCases && signedIn ) && <EditCasesScreen listID={selectedList.id}/>}
+
+            
 
         </div>
     )

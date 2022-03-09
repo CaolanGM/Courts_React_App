@@ -28,7 +28,7 @@ export default function HomeScreen() {
 
 
     return (
-        <div>
+        <div className='container'>
                 
                 {showAddList && <div>
                 

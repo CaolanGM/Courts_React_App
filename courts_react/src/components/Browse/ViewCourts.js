@@ -11,20 +11,27 @@ export default function ViewCourts({clicked}) {
        clicked(court)
     }
 
+    
+    const liveClicked = () => {
+
+        
+     }
+ 
 
     return (
         <div className="viewCourts">
 
             <div className="viewCourtsColumn">
-                <button className="courtTile" onClick={()=>courtClicked("High Court")}>High Court</button>
+                
                 <button className="courtTile" onClick={()=>courtClicked("Supreme Court")}>Supreme Court</button>
-                <button className="courtTile" onClick={()=>courtClicked("Criminal Court")}>Criminal Court</button>
+                <button className="courtTile" onClick={()=>courtClicked("High Court")}>High Court</button>
+                <button className="courtTile" onClick={()=>courtClicked("District Court")}>District Court</button>
             </div>
             
             <div className="viewCourtsColumn">
-                <button className="courtTile" onClick={()=>courtClicked("Civil Court")}>Civil Court</button>
-                <button className="courtTile" onClick={()=>courtClicked("Justice Court")}>Justice Court</button>
-                <button className="courtTile" onClick={()=>courtClicked("Tennis Court")}>Tennis Court</button>
+                <button className="courtTile" onClick={()=>courtClicked("Court of Appeal")}>Court of Appeal</button>
+                <button className="courtTile" onClick={()=>courtClicked("Circuit Court")}>Circuit Court</button>
+                <button className="courtTile activeLists" onClick={()=>liveClicked()}>Currently Active Lists</button>
             </div>
         </div>
     )
