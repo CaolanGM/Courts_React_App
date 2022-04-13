@@ -12,6 +12,7 @@ import UploadCases from './components/Admin/uploadEditCase';
 import Test from './components/Test/test';
 import CreateList from './components/Admin/createList';
 import EditCasesScreen from './components/Admin/EditCases';
+import ComingSoon from './components/Other/ComingSoon';
 
 import firebase from './firebase'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -50,6 +51,7 @@ function App() {
               <Route path='/test' element={<Test/>}/>
               <Route path='/upload' element={<UploadCases/>}/>
               <Route path='/addList' element={<CreateList/>}/>
+              <Route path='/comingSoon' element={<ComingSoon/>}/>
               <Route path='/viewLists/:courtName' element={<ViewLists/>}/>
     
             </Routes>

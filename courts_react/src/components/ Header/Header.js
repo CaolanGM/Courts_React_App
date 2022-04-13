@@ -9,7 +9,7 @@ export default function Header() {
 
 
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem("authID") !== null)
-    const [user, setUser] = useState("Caolan")
+    const [user, setUser] = useState("Admin")
     const navigate = useNavigate();
 
     const auth = firebase.auth()
@@ -56,7 +56,7 @@ export default function Header() {
 
             <div className="logoSection" onClick={goHome}>
                 <img className="logoIV" src="assets/logo.png" />
-                <span>Court Project</span>
+                <span>Real-Time Legal Diary</span>
             </div>
            <div className ="linkSection"></div>
            <div className ="authSection">

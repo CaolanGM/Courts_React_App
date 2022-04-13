@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import  './Browse.css'
+import { useNavigate } from "react-router-dom";
+
 
 export default function ViewCourts({clicked}) {
 
-
+    const navigate = useNavigate();
     // const [status, setStatus] = useState(caseVar.status)
 
     const courtClicked = (court) => {
 
-       clicked(court)
+        if(court === "High Court" || court === "Supreme Court")
+        {
+            clicked(court)
+        }
+        else{
+            navigate("../comingSoon", { replace: true });
+        }
+       
     }
 
     
     const liveClicked = () => {
 
+        navigate("../comingSoon", { replace: true });
         
      }
  

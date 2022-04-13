@@ -65,39 +65,17 @@ function ViewCasesScreen({list}) {
     
     useEffect(async () => {
 
-        // let firstDate = new Date()
-        // let firsTime = firstDate.getTime()
-        // setLastUpdated(firsTime)
-
-        // const timer = setTimeout(() => ticking && updateTime(), 1e3)
-        // return () => clearTimeout(timer)
-
-
-        // const interval = setInterval(() => {
-        //     console.log('Logs every minute',lastUpdated);
-
-        //     let date = new Date()
-        //     let time = date.getTime()
-        //     setLastUpdated(time)
-        //   }, 3000);
-        
-        //   return () => clearInterval(interval); 
-
-        // job.start();
-
-
-        // let date = new Date()
-        // let time = date.getTime()
-        // setLastUpdated(time)
  
     }, []);
 
 
     useEffect(async () => {
 
+
         setTimeout(() => {  
             console.log('Cant help it',lastUpdated);
-            
+            localStorage.setItem("RefreshList", null)
+
             let date = new Date()
             let time = date.getTime()
 
@@ -106,14 +84,30 @@ function ViewCasesScreen({list}) {
                 loadCases()
             }
 
-            setLastUpdated(time - 1000)
+            setLastUpdated(time)
 
 
-         }, 4000);
+         }, 1000);
 
         
 
     }, [lastUpdated]);
+
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", saveList);
+        return () => {
+          window.removeEventListener("beforeunload", saveList);
+        };
+      }, []);
+
+
+      const saveList = (e) => {
+        console.log("REFRESH", e)
+        var listVar = list
+        listVar.cases = cases
+        localStorage.setItem("RefreshList", JSON.stringify(listVar))
+      };
 
     return(
         <div className="container">
@@ -126,7 +120,7 @@ function ViewCasesScreen({list}) {
             {/* <h2>{court} - {listType}: {listName}</h2> */}
             
            
-            {(cases!==undefined) && <div>
+            {(cases!==undefined) && <div className='casesScreen'>
 
 
             <div className="casesHeaders">

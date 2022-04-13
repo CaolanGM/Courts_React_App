@@ -71,7 +71,7 @@ function EditCasesScreen({listID}) {
         }).then( (response) => {
         
             const data = response.data;
-            console.log(data)
+            console.log("UC", data)
 
         });
     
@@ -238,7 +238,19 @@ function EditCasesScreen({listID}) {
     },[selectedIndex]);
 
 
-    
+    const unsetAllCases = () => {
+
+        console.log("UNSET ALL")
+        var caseArr = []
+        cases.forEach(caseVar => {
+            caseVar.status = "None"
+            caseArr.push(caseVar)
+            updateCaseDB(caseVar)
+        });
+        setCases(caseArr)
+        setSelectedIndex(-1)
+        setEditMode(false)
+    }
 
     
 
@@ -257,6 +269,7 @@ function EditCasesScreen({listID}) {
 
         if(button === "Home"){navigate("../", { replace: true });}
         if(button === "AddItem"){setAddingCase(true)}
+        if(button === "Unset All"){unsetAllCases()}
         if(button === "Live"){
             
             setEditMode(true)
@@ -293,6 +306,7 @@ function EditCasesScreen({listID}) {
 
         setLoading(true)
         loadCases()
+        localStorage.setItem("RefreshListID", null)
  
     }, []);
 
@@ -305,6 +319,7 @@ function EditCasesScreen({listID}) {
 
     useEffect(async () => {
 
+        window.removeEventListener('keydown', keyPressed,true);
 
         
         window.addEventListener('keydown', keyPressed,true);
@@ -319,12 +334,27 @@ function EditCasesScreen({listID}) {
     }, [keyPressed]);
 
 
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", saveList);
+        return () => {
+          window.removeEventListener("beforeunload", saveList);
+        };
+      }, []);
+
+
+      const saveList = (e) => {
+        console.log("REFRESH", e)
+        localStorage.setItem("RefreshListID", listID)
+      };
+
+
     return(
         <div className="container">
 
         <AdminToolbar buttonClicked={toolbarClicked} liveMode={editMode}/>
            
-            {(!loading) && <div>
+            {(!loading) && <div className='casesScreen'>
 
 
             <div className="casesHeaders">

@@ -28,6 +28,7 @@ function AdminToolbar({liveMode,buttonClicked}) {
             <div className='rightButtons'>
 
                 <button className='adminButton addItem' onClick={() => buttonClicked("AddItem")}>Add Item</button>
+                <button className='adminButton addItem' onClick={() => buttonClicked("Unset All")}>Unset All</button>
                 {!liveMode && <button className='adminButton live' onClick={() => buttonClicked("Live")}>Make List Live</button>}
                 {liveMode && <button className='adminButton live' onClick={() => buttonClicked("Not Live")}>Un-Live</button>}
 

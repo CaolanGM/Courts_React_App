@@ -42,8 +42,11 @@ export default function CaseTile({caseVar,editMode,listID}) {
 
 
     const onChangeValue = (event) => {
-            console.log("Radio value",event.target.value);
+            console.log("Radio value",event);
             caseVar.status = event.target.value
+
+            if(caseVar.status === status){caseVar.status ="None"}
+
             setStatus(caseVar.status)
 
             console.log(caseVar.selected)
@@ -58,7 +61,7 @@ export default function CaseTile({caseVar,editMode,listID}) {
             {(!editMode && checkFormat(caseVar.name)) && <div className='caseStatus'>{caseVar.status}</div>}
             
             {(editMode && checkFormat(caseVar.name)) && 
-                <div className='caseRadios' onChange={onChangeValue}>
+                <div className='caseRadios' onChange={onChangeValue} onClick={onChangeValue}>
                     <input className='caseRadio' type="radio" value="Live" name={`status${caseVar.id}`} checked={caseVar.status==="Live"} /> 
                     <input className='caseRadio' type="radio" value="Complete" name={`status${caseVar.id}`} checked={caseVar.status==="Complete"} /> 
                     <input className='caseRadio' type="radio" value="SecondCall" name={`status${caseVar.id}`}  checked={caseVar.status==="SecondCall"}/> 

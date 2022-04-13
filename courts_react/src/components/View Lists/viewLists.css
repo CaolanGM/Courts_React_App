@@ -1,9 +1,14 @@
 .listFilters{
     display: flex;
     flex-direction: row;
-    background-color: grey;
+    background-color: lightgray;
     gap: 30px;
     width: 100%;
+
+    /* padding-left: 10%; */
+    overflow-x: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .rightSide{
@@ -11,25 +16,41 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
+    /* padding-right: 10%; */
 }
 
 .currentlyActiveBtn{
     border-radius: 25px;
     background-color: green;
     color:white;
+    margin-right: 10%;
+}
+
+.ALI1{
+    margin-left: 10%;
+}
+
+.viewLists{
+    /* background-color: aqua; */
+    overflow-x: hidden;
 }
 
 
 .listsTable{
-    width: 1000px;
+    width: 50%;
+    min-width: 360px;
     border-collapse: collapse;
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    margin-top: 30px;
+    margin-top: 75px;
+    overflow-x: auto;
     flex: 60%;
     
 }
+
+
+
 
 .oddRow{background-color: white;}
 

@@ -16,10 +16,11 @@ export default function ListRow({listVar,onClick}) {
     return (
         
         <tr className={`${listVar.index%2==0?'evenRow':'oddRow'}`} onClick={rowClick}>
-            <td>{listVar.date}</td>
+            <td className='tableColumn'>{listVar.date}</td>
             <td>{listVar.listType}</td>
             <td>{listVar.subtitle}</td>
             <td>{listVar.uploaded}</td>
+            {/* <td>ghoidsfhgoidfhgodfihg dofgihdf</td> */}
 
         </tr>
     )

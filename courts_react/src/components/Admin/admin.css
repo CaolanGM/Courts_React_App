@@ -149,7 +149,7 @@
     flex-direction: row;
     flex:100%;
     justify-content: end;
-    gap: 20px 
+    gap: 0px 
     
 
   }
@@ -158,8 +158,8 @@
 
     border-radius: 25px;
     height: 35px;
-    width: 130px;
-    margin: 10px;
+    width: 100px;
+    margin: .75%;
 
     border-style: solid;
     border-width: 1px;

@@ -133,7 +133,7 @@ export default function ListTable({listData,onClick}) {
     },[listData]);
 
     return (
-        <div>
+        // <div className='listTable'>
             
             <table className='listsTable' id='myTable'>
                 <tr className='oddRow'>
@@ -153,6 +153,6 @@ export default function ListTable({listData,onClick}) {
 
                 </table>
             
-        </div>
+        // </div>
     )
 }
